@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Almabase</title>
+  {% load staticfiles %}
+  <!-- CSS  -->
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  {# <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/> #}
+  <!-- CORE CSS-->
+  
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->    
+  <link href="{% static 'css/custom-style.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="{% static 'css/prism.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{% static 'js/plugins/perfect-scrollbar/perfect-scrollbar.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{% static 'js/plugins/chartist-js/chartist.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Almabase</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="http://almabase.com/features">About</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="http://almabase.com/features">About</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <h1 class="header center blue-text">NIT Warangal</h1>
+    <h4 class="blue-text">Last Fetched Time: {{dtime}}</h4>
+    <hr>
+
+    <section id="content">
+      <div id="breadcrumbs-wrapper" class=" grey lighten-3">
+        <!-- Search for small screen -->
+        <div class="header-search-wrapper grey hide-on-large-only">
+          <i class="mdi-action-search active"></i>
+          <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize">
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m12 l12">
+              <ol class="breadcrumb">
+                <li><a href="index.html">Dashboard</a>
+                </li>
+                <li><a href="ui-cards.html#">UI Elements</a>
+                </li>
+                <li class="active">Cards</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row section">
+        {%for article in articles %}
+          <div class="col s12 m6 l6">
+            <div class="card large">
+              <div class="card-image">
+                <img src="{{article.image_link}}" alt="sample" style="width:100%;height:auto;">
+                <span class="card-title white black-text">{{article.title}}</span>
+              </div>
+              <div class="card-content">
+                <p>{{article.summary}}</p>
+                
+              </div>
+                
+              <div class="card-action">
+              {%for person in article.personlist.persons.all|slice:":3" %}
+                <span class=" white-text blue lighten-1 waves-effect waves-light chip">{{person.name}}</span>
+              {%endfor%}
+              {%for org in article.organizationlist.orgs.all|slice:":3" %}
+                <span class=" white-text green lighten-1 waves-effect waves-light chip">{{org.name}}</span>
+              {%endfor%}
+                 <br>
+                 <hr>
+                <a href="{{article.url}}">Read Full Article</a>
+                {# <a href="ui-cards.html#">This is a link</a> #}
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+
+
+
+
+
+
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="{% static 'js/materialize.js'%}"></script>
+        <!--<script src="{% static 'js/init.js' %}"></script>-->
+        <!--prism-->
+        <script type="text/javascript" src="{% static 'js/prism.js'%}"></script>
+        <!--scrollbar-->
+        <script type="text/javascript" src="{% static 'js/plugins/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>  
+
+        <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+        <script type="text/javascript" src="{% static 'js/plugins.js'%}"></script>
+
+
+      </body>
+      </html>
